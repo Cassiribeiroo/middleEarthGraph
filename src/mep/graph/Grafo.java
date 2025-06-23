@@ -4,6 +4,9 @@ import java.util.*;
 
 import mep.model.Aresta;
 import mep.model.Vertice;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Grafo {
 	// Estrutura de adjacência: cada vértice aponta para suas arestas
@@ -32,14 +35,57 @@ public class Grafo {
 
 	// Exibe o grafo completo
 	public void exibirGrafo() {
-		for (Vertice v : adjacencias.keySet()) {
-			System.out.print(v + " -> ");
-			System.out.println(adjacencias.get(v));
-		}
+	    // Cria uma lista com os vértices (chaves do mapa)
+	    List<Vertice> verticesOrdenados = new ArrayList<>(adjacencias.keySet());
+
+	    // Ordena os vértices pelo nome, ignorando maiúsculas
+	    verticesOrdenados.sort(Comparator.comparing(Vertice::getNome, String.CASE_INSENSITIVE_ORDER));
+
+	    // Usa a lista ordenada no laço
+	    for (Vertice v : verticesOrdenados) {
+	        System.out.print(v + " -> ");
+	        System.out.println(adjacencias.get(v));
+	    }
 	}
 	
     // Getter opcional para uso posterior
     public Map<Vertice, List<Aresta>> getAdjacencias() {
         return adjacencias;
     }
+    
+    // Lê arquivo vertices.csv
+    public void carregarVertices(String caminho) {
+        try (BufferedReader br = new BufferedReader(new FileReader(caminho))) {
+        	String linha = br.readLine(); // Pula o cabeçalho
+            while ((linha = br.readLine()) != null) {
+                String nome = linha.trim();
+                if (!nome.isEmpty()) {
+                    adicionarVertice(nome);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao ler arquivo de vértices: " + e.getMessage());
+        }
+    }
+    
+ // Lê arquivo arestas.csv
+    public void carregarArestas(String caminho) {
+        try (BufferedReader br = new BufferedReader(new FileReader(caminho))) {
+        	String linha = br.readLine(); // Pula o cabeçalho
+        	
+            while ((linha = br.readLine()) != null) {
+                String[] partes = linha.split(",");
+                if (partes.length == 4) {
+                    String origem = partes[0].trim();
+                    String destino = partes[1].trim();
+                    int perigo = Integer.parseInt(partes[2].trim());
+                    int distancia = Integer.parseInt(partes[3].trim());
+                    adicionarAresta(origem, destino, perigo, distancia);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao ler arquivo de arestas: " + e.getMessage());
+        }
+    }
+
 }
