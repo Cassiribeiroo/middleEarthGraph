@@ -1,5 +1,6 @@
 package mep.app;
 
+import mep.graph.Grafo;
 import mep.model.Aresta;
 import mep.model.Vertice;
 
@@ -28,6 +29,14 @@ public class Main {
         // Criando arestas
         Aresta a1 = new Aresta(v3, 4, 55); // destino: Rohan, perigo 4, distância 55
         System.out.println("Aresta a1: " + a1);
+        
+        //criando Grafo
+        Grafo grafo = new Grafo();
+        grafo.adicionarVertice("Gondor");
+        grafo.adicionarVertice("Rohan");
+        grafo.adicionarAresta("Gondor", "Rohan", 3, 55);
+        grafo.exibirGrafo();
+        
 	}
 
 }

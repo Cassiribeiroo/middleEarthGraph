@@ -6,7 +6,6 @@ public class Aresta {
 	private int distancia;
 	
 	public Aresta(Vertice destino, int perigo, int distancia) {
-		super();
 		this.destino = destino;
 		this.perigo = perigo;
 		this.distancia = distancia;
