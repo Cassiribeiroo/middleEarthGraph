@@ -1,0 +1,51 @@
+origem,destino,nível de perigo,distância
+Forlindon,Harlindon,2,90
+Harlindon,Shire,1,80
+Shire,Arthedain,1,40
+Arthedain,Arnor,3,30
+Arnor,Rhudaur,4,120
+Rhudaur,Angmar,8,100
+Rhudaur,Eregion,3,30
+Eregion,Minhiriath,2,80
+Minhiriath,Cardolan,2,45
+Minhiriath,Dunland,3,50
+Dunland,Rohan,4,55
+Rohan,Gondor,3,55
+Rohan,The Wold,2,60
+The Wold,The Carrock,4,130
+The Carrock,Rhovanion,3,55
+Rhovanion,Withered Heath,5,100
+Rhovanion,Rhûn,6,150
+Rhûn,Dorwinion,3,55
+Dorwinion,The Brown Lands,7,110
+The Brown Lands,Cair Andros,5,60
+Cair Andros,Gondor,2,80
+Gondor,South Ithilien,3,85
+South Ithilien,Mordor,9,45
+Mordor,Khand,8,120
+Khand,Far Harad,10,150
+Andrast,Enedwaith,5,50
+Enedwaith,Minhiriath,4,20
+Tolfalas,Anfalas,2,60
+Tolfalas,Gondor,2,55
+Forlindon,Arthedain,3,80
+Harlindon,Cardolan,2,30
+Shire,Rhudaur,5,90
+Arnor,Forodwaith,3,20
+Arnor,Northern Waste,7,80
+Angmar,The Carrock,6,85
+Rhovanion,Rhûn,8,100
+South Ithilien,Cair Andros,5,40
+Mordor,Far Harad,10,120
+The Wold,The Brown Lands,4,30
+Eregion,Dunland,2,10
+Enedwaith,Dunland,2,35
+Enedwaith,Gondor,2,45
+The Carrock,The Brown Lands,6,80
+Far Harad,South Ithilien,6,80
+Andrast,Anfalas,1,20
+Harlindon,Minhiriath,3,40
+The Carrock,Northern Waste,7,80
+The Brown Lands,Rhovanion,8,60
+Forlindon,Shire,3,45
+Arnor,Rhudaur,2,40
