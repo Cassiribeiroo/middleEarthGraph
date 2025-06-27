@@ -11,11 +11,15 @@ public class Dijkstra {
 	 public static List<Vertice> caminhoMaisCurtoPorDistancia(Grafo grafo, String origemNome, String destinoNome) {
 	        Vertice origem = new Vertice(origemNome);
 	        Vertice destino = new Vertice(destinoNome);
-
+	        
+	        // Guarda a menor distância já encontrada até cada vértice
 	        Map<Vertice, Integer> distancias = new HashMap<>();
+	        // Armazena o vértice anterior no caminho (usado para reconstruir o caminho final)
 	        Map<Vertice, Vertice> anteriores = new HashMap<>();
+	        // Guarda os vértices que já foram processados
 	        Set<Vertice> visitados = new HashSet<>();
 
+	        // Cria uma fila de prioridade, que sempre retorna o vértice com menor distância acumulada
 	        PriorityQueue<Vertice> fila = new PriorityQueue<>(Comparator.comparingInt(distancias::get));
 
 	        for (Vertice v : grafo.getAdjacencias().keySet()) {
@@ -29,10 +33,12 @@ public class Dijkstra {
 	            Vertice atual = fila.poll();
 	            if (!visitados.add(atual)) continue; // Ignora se já foi visitado
 
+	            // Para cada vizinho do atual calculamos a nova distância acumulada até esse vizinho
 	            for (Aresta aresta : grafo.getAdjacencias().getOrDefault(atual, new ArrayList<>())) {
 	                Vertice vizinho = aresta.getDestino();
 	                int novaDistancia = distancias.get(atual) + aresta.getDistancia();
 
+	                // Se esse novo caminho é melhor (mais curto) do que o que tínhamos antes
 	                if (novaDistancia < distancias.getOrDefault(vizinho, Integer.MAX_VALUE)) {
 	                    distancias.put(vizinho, novaDistancia);
 	                    anteriores.put(vizinho, atual);
@@ -44,7 +50,8 @@ public class Dijkstra {
 	        // Reconstrói o caminho
 	        List<Vertice> caminho = new ArrayList<>();
 	        Vertice atual = destino;
-	        while (atuaisPredecessorExiste(atuaisAnterior -> anteriores.get(atuaisAnterior), atual, origem)) {
+	        // Enquanto houver um vértice anterior no caminho
+	        while (atuaisPredecessorExiste(atuaisAnterior -> anteriores.get(atuaisAnterior), atual)) {
 	            caminho.add(atual);
 	            atual = anteriores.get(atual);
 	        }
@@ -61,7 +68,8 @@ public class Dijkstra {
 	        return caminho;
 	    }
 
-	    private static boolean atuaisPredecessorExiste(java.util.function.Function<Vertice, Vertice> anteriores, Vertice atual, Vertice origem) {
+	 	// Verifica se o vértice atual possui um anterior registrado
+	    private static boolean atuaisPredecessorExiste(java.util.function.Function<Vertice, Vertice> anteriores, Vertice atual) {
 	        return atual != null && anteriores.apply(atual) != null;
 	    }
 	    
@@ -92,10 +100,9 @@ public class Dijkstra {
 	        // O vértice de origem tem perigo acumulado igual a zero
 	        perigos.put(origem, 0);
 	        fila.add(origem); // Começamos por ele
-
-	        // Enquanto ainda há vértices para processar
+	        
 	        while (!fila.isEmpty()) {
-	            Vertice atual = fila.poll(); // Pega o vértice com menor perigo atual
+	            Vertice atual = fila.poll(); 
 	            if (!visitados.add(atual)) continue; // Pula se já foi visitado
 
 	            // Para cada vizinho do vértice atual
@@ -117,7 +124,7 @@ public class Dijkstra {
 	        Vertice atual = destino;
 
 	        // Enquanto o atual não for nulo e tiver um anterior (origem ainda não chegou)
-	        while (atuaisPredecessorExiste(anteriores::get, atual, origem)) {
+	        while (atuaisPredecessorExiste(anteriores::get, atual)) {
 	            caminho.add(atual);
 	            atual = anteriores.get(atual); // Anda um passo para trás
 	        }

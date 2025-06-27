@@ -48,7 +48,7 @@ public class Grafo {
 	    }
 	}
 	
-    // Getter opcional para uso posterior
+    // Getter 
     public Map<Vertice, List<Aresta>> getAdjacencias() {
         return adjacencias;
     }

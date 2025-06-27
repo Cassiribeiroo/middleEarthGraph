@@ -31,6 +31,7 @@ public class Main {
 
         // Busca em profundidade
         boolean dfs = Buscador.buscaProfundidade(grafo, origem, destino);
+        System.out.println();
         System.out.println("Busca em Profundidade: Existe caminho de " + origem + " para " + destino + "? " + dfs);
 
         // Busca em largura
@@ -38,9 +39,11 @@ public class Main {
         System.out.println("Busca em Largura: Existe caminho de " + origem + " para " + destino + "? " + bfs);
         
         // Busca caminho mais curto
+        System.out.println();
         Dijkstra.caminhoMaisCurtoPorDistancia(grafo, origem, destino);
         
         // Busca caminho mais seguro
+        System.out.println();
         Dijkstra.caminhoMaisSeguroPorPerigo(grafo, origem, destino);
 
         // Fecha o scanner
