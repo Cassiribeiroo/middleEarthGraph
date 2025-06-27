@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import mep.graph.Grafo;
 import mep.search.Buscador;
+import mep.search.Dijkstra;
 
 public class Main {
 
@@ -35,6 +36,12 @@ public class Main {
         // Busca em largura
         boolean bfs = Buscador.buscaLargura(grafo, origem, destino);
         System.out.println("Busca em Largura: Existe caminho de " + origem + " para " + destino + "? " + bfs);
+        
+        // Busca caminho mais curto
+        Dijkstra.caminhoMaisCurtoPorDistancia(grafo, origem, destino);
+        
+        // Busca caminho mais seguro
+        Dijkstra.caminhoMaisSeguroPorPerigo(grafo, origem, destino);
 
         // Fecha o scanner
         scanner.close();
